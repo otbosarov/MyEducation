@@ -44,6 +44,7 @@ class EvaluationRepository implements EvaluationInterface
             ->when($dates, function ($query) use ($dates) {
                 $query->whereDate('evaluations.created_at', $dates);
             })
+            ->orderBy('id','desc')
             ->simplePaginate($perPage);
 
         return UniversalResource::collection($evaluation);

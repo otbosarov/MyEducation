@@ -81,6 +81,6 @@ class StudentRepository implements StudentInterface
         $fakeStudentCount = request('fake_student_count', 1);
         Student::factory()->count($fakeStudentCount)->create();
 
-        return response()->json(['message' => "Kiritgan miqdorizda fake ma'lumotga to'ldirildi baza!"], 201);
+        return response()->json(['message' => "Kiritgan miqdorizcha fake ma'lumotga to'ldirildi jadval!"], 201);
     }
 }

@@ -14,15 +14,6 @@ class Group extends Model
         'teacher_id',
         'active',
     ];
-    public function teachers()
-    {
-
-        return $this->hasOne(Teacher::class);
-    }
-    public function subjects()
-    {
-        return $this->hasMany(Subject::class);
-    }
     public function studentToGroup()
     {
         return $this->hasMany(GroupToStudent::class, 'group_id', 'id')

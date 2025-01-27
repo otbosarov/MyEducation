@@ -12,12 +12,4 @@ class Subject extends Model
         'subject_name',
         'active',
     ];
-    public function teachers()
-    {
-        return $this->hasMany(Teacher::class);
-    }
-    public function groups()
-    {
-        return $this->hasOne(Group::class);
-    }
 }
