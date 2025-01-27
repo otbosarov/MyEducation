@@ -44,7 +44,7 @@ class EvaluationRepository implements EvaluationInterface
             ->when($dates, function ($query) use ($dates) {
                 $query->whereDate('evaluations.created_at', $dates);
             })
-            ->orderBy('id','desc')
+            ->orderBy('id', 'desc')
             ->simplePaginate($perPage);
 
         return UniversalResource::collection($evaluation);
@@ -59,7 +59,9 @@ class EvaluationRepository implements EvaluationInterface
                     $query->with(['lesson']);
                 })
                 ->first();
-
+            if (!$student) {
+                return response()->json(['message' => "Bunday ma'lumot mavjud emas"], 404);
+            }
             if ($student->groupToStudent?->lesson?->id != $lessonId) {
                 return response()->json(["message" => "Ushbu o'quvchi guruhda mavjud emas!"], 404);
             }

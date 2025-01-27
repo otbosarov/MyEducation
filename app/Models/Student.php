@@ -20,8 +20,4 @@ class Student extends Model
     {
         return $this->hasOne(GroupToStudent::class, 'student_id', 'id');
     }
-    public function groups()
-    {
-        return $this->hasMany(Group::class);
-    }
 }

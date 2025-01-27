@@ -14,7 +14,6 @@ class GroupToStudentRepository implements GroupToStudentInterface
     public function index($id)
     {
         $perPage = request('per_page', 15);
-        $search = request('search');
 
         $group = Group::where('groups.id', $id)
             ->with(['studentToGroup.students'])
