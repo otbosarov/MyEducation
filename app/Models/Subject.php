@@ -12,11 +12,12 @@ class Subject extends Model
         'subject_name',
         'active',
     ];
-    public function teachers(){
-        return $this->hasMany(Teacher::class);  // teacher and subject   relation (many-to-many)
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
     }
-    public function groups(){
-        //shu yerda belongsTo o'rniga  hasOne ishlatsa ham bo'ladimu
-        return $this->hasOne(Group::class);   // group and subject   relation (one-to-many)
+    public function groups()
+    {
+        return $this->hasOne(Group::class);
     }
 }

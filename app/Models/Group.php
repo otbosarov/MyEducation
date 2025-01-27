@@ -16,14 +16,16 @@ class Group extends Model
     ];
     public function teachers()
     {
-        //shu yerda belongsTo o'rniga  hasOne ishlatsa ham bo'ladimu
-        return $this->hasOne(Teacher::class);  // teacher and groups   relation (one-to-one)
+
+        return $this->hasOne(Teacher::class);
     }
-    public function subjects(){
-        return $this->hasMany(Subject::class);  // subject and groups   relation (one-to-many)
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
     }
-    public function studentToGroup(){
-        return $this->hasMany(GroupToStudent::class,'group_id', 'id')
-        ->select('group_id', 'student_id', 'active');
+    public function studentToGroup()
+    {
+        return $this->hasMany(GroupToStudent::class, 'group_id', 'id')
+            ->select('group_id', 'student_id', 'active');
     }
 }

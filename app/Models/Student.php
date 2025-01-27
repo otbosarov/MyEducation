@@ -16,10 +16,12 @@ class Student extends Model
         'active',
     ];
 
-    public function groupToStudent(){
+    public function groupToStudent()
+    {
         return $this->hasOne(GroupToStudent::class, 'student_id', 'id');
     }
-    public function groups(){
-        return $this->hasMany(Group::class);  // many-to-many
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
     }
 }
