@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Repositories;
+
 use App\Http\Requests\SubjectRequest;
 use App\Http\Resources\UniversalResource;
 use App\Interfaces\SubjectInterface;
@@ -7,6 +9,13 @@ use App\Models\Subject;
 
 class SubjectRepository implements SubjectInterface
 {
+    public function SelectTeachaerSubjects()
+    {
+        return $subjects = Subject::
+            where('active', true)
+            ->with('groups.teacherGroup')
+            ->get();
+    }
     public function index()
     {
         $perPage = request('per_page', 15);
@@ -20,11 +29,10 @@ class SubjectRepository implements SubjectInterface
     }
     public function store(SubjectRequest $request)
     {
-            Subject::create([
-                'subject_name' => $request->subject_name,
-            ]);
-            return response()->json(['message' => "Ma'lumot qo'shildi"], 201);
-
+        Subject::create([
+            'subject_name' => $request->subject_name,
+        ]);
+        return response()->json(['message' => "Ma'lumot qo'shildi"], 201);
     }
     public function update(SubjectRequest $request, $id)
     {

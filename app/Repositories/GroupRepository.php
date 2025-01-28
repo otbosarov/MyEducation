@@ -7,6 +7,7 @@ use App\Http\Requests\GroupUpdateRequest;
 use App\Http\Resources\UniversalResource;
 use App\Interfaces\GroupInterface;
 use App\Models\Group;
+use App\Models\Subject;
 
 class GroupRepository implements GroupInterface
 {

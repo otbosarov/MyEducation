@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 class SubjectController extends Controller
 {
     public function __construct(protected SubjectInterface $subjectInterface){}
+    public function SelectTeachaerSubjects(){
+        return $this->subjectInterface->SelectTeachaerSubjects();
+    }
     public function index()
     {
         return $this->subjectInterface->index();

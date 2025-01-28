@@ -14,4 +14,11 @@ class Teacher extends Model
         'phone',
         'active',
     ];
+    public function subjects(){
+        return $this->hasMany(Subject::class);
+    }
+    public function groups(){
+        return $this->hasMany(Group::class);
+    }
 }
+

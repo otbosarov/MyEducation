@@ -11,4 +11,5 @@ interface LessonInterface
     function update(LessonRequest $request, $id);
     function destroy($id);
     function changeActive($id);
+    function OneDayLessons();
 }

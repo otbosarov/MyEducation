@@ -31,4 +31,7 @@ class LessonController extends Controller
     {
         return $this->lessonInterface->changeActive($id);
     }
+    public  function OneDayLessons(){
+        return $this->lessonInterface->OneDayLessons();
+    }
 }

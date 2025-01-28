@@ -16,7 +16,8 @@ class EvaluationRepository implements EvaluationInterface
     {
         $search = request('search');
         $perPage = request('per_page', 15);
-        $dates = request('dates', []);
+        $startDate = request('startDate');
+        $endDate = request('endDate');
 
         $evaluation = Evaluation::join('lessons', 'evaluations.lesson_id', 'lessons.id')
             ->join('students', 'evaluations.student_id', 'students.id')
@@ -41,8 +42,9 @@ class EvaluationRepository implements EvaluationInterface
                     ->orWhere('subjects.subject_name', 'LIKE', "%$search%")
                     ->orWhere('teachers.teacher_name', 'LIKE', "%$search%");
             })
-            ->when($dates, function ($query) use ($dates) {
-                $query->whereDate('evaluations.created_at', $dates);
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                $query->whereDate('evaluations.created_at', '>=',$startDate)
+                    ->whereDate('evaluations.created_at', '<=',$endDate);
             })
             ->orderBy('id', 'desc')
             ->simplePaginate($perPage);

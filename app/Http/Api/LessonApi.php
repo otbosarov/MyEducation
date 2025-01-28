@@ -13,6 +13,7 @@ class LessonApi
 
         Route::controller(LessonController::class)->group(function () {
             Route::put('changeActive_lesson/{id}', 'changeActive');
+            Route::get('OneDayLessons','OneDayLessons');
         });
     }
 }

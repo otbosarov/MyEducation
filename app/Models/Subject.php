@@ -12,4 +12,7 @@ class Subject extends Model
         'subject_name',
         'active',
     ];
+    public function groups(){
+        return $this->hasMany(Group::class, 'subject_id', 'id');
+    }
 }

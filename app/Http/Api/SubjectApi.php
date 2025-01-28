@@ -8,5 +8,6 @@ use Illuminate\Support\Facades\Route;
 class SubjectApi {
     public static function api(){
         Route::resource('subject',SubjectController::class);
+        Route::get('SelectTeachaerSubjects',[SubjectController::class,'SelectTeachaerSubjects']);
     }
 }

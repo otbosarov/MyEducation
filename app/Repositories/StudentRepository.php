@@ -76,6 +76,13 @@ class StudentRepository implements StudentInterface
             ->simplePaginate($perPage);
         return UniversalResource::collection($student);
     }
+    public function highestStudentShow()
+    {
+        $student = Student::orderBy('rating', 'desc')
+            ->limit(10)
+            ->get();
+        return UniversalResource::collection($student);
+    }
     public function addStudentFactory()
     {
         $fakeStudentCount = request('fake_student_count', 1);

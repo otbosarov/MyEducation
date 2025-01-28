@@ -11,5 +11,4 @@ interface GroupInterface {
     function update(GroupUpdateRequest $request, $id);
     function destroy($id);
     function changeActive($id);
-
 }

@@ -11,6 +11,7 @@ interface StudentInterface
     function update(StudentUpdateRequest $request, $id);
     function destroy($id);
     function ratingShow();
+    function highestStudentShow();  
     function addStudentFactory();
 
 }

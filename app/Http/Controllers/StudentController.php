@@ -33,6 +33,9 @@ class StudentController extends Controller
     {
         return $this->studentInterface->ratingShow();
     }
+    public function highestStudentShow(){
+        return $this->studentInterface->highestStudentShow();
+    }
     public function addStudentFactory(){
         return $this->studentInterface->addStudentFactory();
     }

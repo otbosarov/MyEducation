@@ -14,6 +14,9 @@ class LessonRepository implements LessonInterface
         $search = request('search');
         $perPage = request('per_page', 15);
 
+        $startDate = request('startDate');
+        $endDate = request('endDate');
+
         $lesson = Lesson::join('groups', 'lessons.group_id', 'groups.id')
             ->join('subjects', 'groups.subject_id', 'subjects.id')
             ->join('teachers', 'groups.teacher_id', 'teachers.id')
@@ -26,6 +29,10 @@ class LessonRepository implements LessonInterface
                 'teachers.teacher_name',
                 'lessons.created_at'
             )
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                $query->whereDate('lessons.created_at', '>=', $startDate)
+                    ->whereDate('lessons.created_at', '<=', $endDate);
+            })
             ->when($search, function ($query) use ($search) {
                 $query->where('lessons.description', 'LIKE', "%$search%")
                     ->orWhere('groups.group_name', 'LIKE', "%$search%");
@@ -85,5 +92,30 @@ class LessonRepository implements LessonInterface
         $lesson->active = !$lesson->active;
         $lesson->save();
         return response()->json(['message' => "Amaliyot bajarildi"], 200);
+    }
+    public function OneDayLessons()
+    {
+
+        $startDate = request('startDate');
+        $endDate = request('endDate');
+
+        $lesson = Lesson::join('groups', 'lessons.group_id', 'groups.id')
+            ->join('subjects', 'groups.subject_id', 'subjects.id')
+            ->join('teachers', 'groups.teacher_id', 'teachers.id')
+            ->where('lessons.active', true)
+            ->select(
+                'lessons.id',
+                'subjects.subject_name',
+                'lessons.description',
+                'groups.group_name',
+                'teachers.teacher_name',
+                'lessons.created_at'
+            )
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                $query->whereDate('lessons.created_at', '>=', $startDate)
+                    ->whereDate('lessons.created_at', '<=', $endDate);
+            })
+            ->get();
+        return $lesson;
     }
 }

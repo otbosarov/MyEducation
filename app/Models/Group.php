@@ -19,4 +19,10 @@ class Group extends Model
         return $this->hasMany(GroupToStudent::class, 'group_id', 'id')
             ->select('group_id', 'student_id', 'active');
     }
+    public function subjects(){
+        return $this->hasOne(Subject::class);
+    }
+    public function teacherGroup(){
+        return $this->hasMany(Teacher::class, 'id', 'teacher_id');
+    }
 }
